@@ -1,0 +1,18 @@
+CREATE TABLE `patient` (
+   `id` int NOT NULL AUTO_INCREMENT,
+   `name` varchar(20) NOT NULL,
+   `age` int NOT NULL,
+   `gender` enum('male','female') NOT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `scan_image` (
+   `image_id` int NOT NULL AUTO_INCREMENT,
+   `patient_id` int NOT NULL,
+   `is_tumour` tinyint(1) NOT NULL,
+   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `prediction_percentage` float DEFAULT NULL,
+   PRIMARY KEY (`image_id`),
+   KEY `FK_ScanImage` (`patient_id`),
+   CONSTRAINT `FK_ScanImage` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
